@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Analysis Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <div class="result-page">
+    <div class="result-card">
+      <h1>Resume Analysis Result</h1>
+
+      <div class="score-circle">
+        <span>{{ result.ats_score }}%</span>
+        <p>ATS Score</p>
+      </div>
+
+      <div class="summary-grid">
+        <div>
+          <h3>📄 Word Count</h3>
+          <p>{{ result.word_count }}</p>
+        </div>
+
+        <div>
+          <h3>✅ Skills Found</h3>
+          <p>{{ result.found_skills|length }}</p>
+        </div>
+
+        <div>
+          <h3>⚠ Missing Keywords</h3>
+          <p>{{ result.missing_skills|length }}</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>✅ Detected Skills</h2>
+        <div class="chips">
+          {% for skill in result.found_skills %}
+            <span>{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>⚠ Suggested Keywords</h2>
+        <div class="chips warning">
+          {% for skill in result.missing_skills %}
+            <span>{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>💡 Improvement Tips</h2>
+        <ul>
+          {% for tip in result.tips %}
+            <li>{{ tip }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <a href="/" class="back-btn">Analyze Another Resume</a>
+    </div>
+  </div>
+
+</body>
+</html>

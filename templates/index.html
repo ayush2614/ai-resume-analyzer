@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resume Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <div class="hero">
+    <div class="card">
+      <div class="badge">AI Powered Resume Scanner</div>
+
+      <h1>AI Resume Analyzer</h1>
+      <p class="subtitle">
+        Upload your resume PDF and get ATS score, detected skills, missing keywords, and improvement tips.
+      </p>
+
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <form action="/analyze" method="POST" enctype="multipart/form-data" class="upload-form">
+        <label class="upload-box">
+          <input type="file" name="resume" id="resumeInput" accept=".pdf" required />
+          <span id="fileName">📄 Choose Resume PDF</span>
+        </label>
+
+        <button type="submit">Analyze Resume 🚀</button>
+      </form>
+
+      <div class="features">
+        <span>ATS Score</span>
+        <span>Skill Detection</span>
+        <span>Smart Tips</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
